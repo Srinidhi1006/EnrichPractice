@@ -1,0 +1,13 @@
+openapi: 3.0.1
+info:
+  title: EnrichPracticeAPI
+  description: API Definition of EnrichPracticeAPI
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/enrichProperty
+paths:
+  /:
+    get:
+      responses:
+        default:
+          description: Default response

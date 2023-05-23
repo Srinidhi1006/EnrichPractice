@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/enrichProperty" name="EnrichPracticeAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET">
+        <inSequence>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+"name":"srinidhi",&#xd;
+"role":"dev"&#xd;
+}</format>
+                <args/>
+            </payloadFactory>
+            <enrich>
+                <source clone="true" type="body"/>
+                <target property="First_property" type="property"/>
+            </enrich>
+            <payloadFactory media-type="json">
+                <format>{&#xd;
+"company":"massil",&#xd;
+"description":$1&#xd;
+}</format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:First_property"/>
+                </args>
+            </payloadFactory>
+            <log level="full" separator="  ***firstLog***  "/>
+            <enrich>
+                <source clone="true" property="First_property" type="property"/>
+                <target type="body"/>
+            </enrich>
+            <log level="full" separator="  **secondLog**  ">
+                <property expression="$ctx:First_property" name="Property"/>
+            </log>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
