@@ -22,7 +22,7 @@
                     <arg evaluator="xml" expression="$ctx:First_property"/>
                 </args>
             </payloadFactory>
-            <log level="full" separator="  ***firstLog***  "/>
+            <log level="full" separator="  ***first  Log***  "/>
             <enrich>
                 <source clone="true" property="First_property" type="property"/>
                 <target type="body"/>
